@@ -30,14 +30,13 @@
 <div class="container-3">
     <table>
         <tr>
-            <th>Title</th><th>Description</th><th>Image</th><th>Save as PDF</th>
+            <th>Title</th><th>Description</th><th>Save as PDF</th>
         </tr>
 
         @foreach ($result['items'] as $item)
         <tr>
             <td><a target="_blank" href="{{ $item['link'] }}">{{ $item['title'] }}</a></td>
             <td>{!! $item['description'] !!}</td>
-            <td>@if (isset($item['thumbnail'])) <img src="{{ $item['thumbnail'] }}" alt="Thumbnail"> @endif</td>
             <td class="pdf"><a href="{{ $item['pdf_url'] }}">Save as PDF</a></td>
         </tr>
         @endforeach
