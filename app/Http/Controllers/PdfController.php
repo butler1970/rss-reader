@@ -6,32 +6,39 @@ use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Http;
+use Spatie\Browsershot\Browsershot;
 
 class PdfController extends Controller
 {
     /**
      * @param Request $request
-     * @return Response
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function renderAsPdf(Request $request): Response
+    public function renderAsPdf(Request $request)
     {
         $url = urldecode($request->get('url'));
 
-        $client = new Client();
+        $config = <<<EOT
+{
+    "url": "$url",
+    "margins": "5mm",
+    "paperSize": "Letter",
+    "orientation": "Portrait",
+    "printBackground": true,
+    "header": "",
+    "footer": "",
+    "mediaType": "print",
+    "async": false
+}
+EOT;
 
-        /**
-         * @TODO Determine how to get the final HTML after the redirect.
-         *
-         * In the example RSS feed for this exercise, google news always hits a page which then redirects after some
-         * delay which is preventing this logic from rendering the article as a PDF.
-         *
-         * The example RSS url is https://news.google.com/rss?pz=1&cf=all&hl=en-US&gl=US&ceid=US:en
-         */
-        $html = $client->request('GET', $url, ['allow_redirects' => true])->getBody();
+        $pdfUrl = Http::withHeaders([
+                'x-api-key' => config('services.pdf.token'),
+                'Content-Type' => 'application/json'
+            ]
+        )->post('https://api.pdf.co/v1/pdf/convert/from/url', json_decode($config));
 
-        $pdf = PDF::loadHTML($html);
-
-        return $pdf->download('article.pdf');
+        return redirect($pdfUrl->json()['url']);
     }
 }
