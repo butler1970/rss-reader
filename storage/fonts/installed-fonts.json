@@ -1,0 +1,29 @@
+{
+    "google sans text": {
+        "italic": "\/var\/www\/html\/storage\/fonts\/google_sans_text_italic_7afd4a57894f455af55a2503226da1ab",
+        "500_italic": "\/var\/www\/html\/storage\/fonts\/google_sans_text_500_italic_380caa16df2f969b9914ee8088966100",
+        "bold_italic": "\/var\/www\/html\/storage\/fonts\/google_sans_text_bold_italic_0fe97ce81ff10881d4d7ba256f57ce7a",
+        "normal": "\/var\/www\/html\/storage\/fonts\/google_sans_text_normal_5dc2ad2ae735ee806c7c7df398d222c3",
+        "500": "\/var\/www\/html\/storage\/fonts\/google_sans_text_500_48a1d45a8ca5ead6a5e94438eac66e7e",
+        "bold": "google_sans_text_bold_6a56ef70eb0763d338138cf50593c29d"
+    },
+    "roboto": {
+        "normal": "\/var\/www\/html\/storage\/fonts\/roboto_normal_720228ebe98581cf3dcb9c52d14cb500",
+        "500": "\/var\/www\/html\/storage\/fonts\/roboto_500_bb98903ef47f265f9bae16610ba10957",
+        "bold": "roboto_bold_73a4ebf153133653f71912ea9c01a32f"
+    },
+    "material icons extended": {
+        "normal": "material_icons_extended_normal_487fd32e06cc830814cf440639819e55"
+    },
+    "product sans": {
+        "normal": "product_sans_normal_080408cf91911e55dc747d34f44ccc0b"
+    },
+    "google sans": {
+        "normal": "\/var\/www\/html\/storage\/fonts\/google_sans_normal_d97f0f76397dee48f4bf448ccc9e873c",
+        "500": "\/var\/www\/html\/storage\/fonts\/google_sans_500_fc9bf4fa2268f519056f01eb22361081",
+        "bold": "google_sans_bold_657f59e67cffdf1e6abc73eafaecca77"
+    },
+    "google sans display": {
+        "normal": "google_sans_display_normal_5c132fd7f17c115a688cb76c75fd8baa"
+    }
+}
