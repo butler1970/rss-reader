@@ -33,12 +33,12 @@ class PdfController extends Controller
 }
 EOT;
 
-        $pdfUrl = Http::withHeaders([
+        $response = Http::withHeaders([
                 'x-api-key' => config('services.pdf.token'),
                 'Content-Type' => 'application/json'
             ]
         )->post('https://api.pdf.co/v1/pdf/convert/from/url', json_decode($config));
 
-        return redirect($pdfUrl->json()['url']);
+        return redirect($response->json()['url']);
     }
 }
