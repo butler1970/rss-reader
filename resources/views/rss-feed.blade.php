@@ -37,7 +37,7 @@
         <tr>
             <td><a target="_blank" href="{{ $item['link'] }}">{{ $item['title'] }}</a></td>
             <td>{!! $item['description'] !!}</td>
-            <td class="pdf"><a href="{{ $item['pdf_url'] }}">Save as PDF</a></td>
+            <td class="pdf"><a target="_blank" href="{{ $item['pdf_url'] }}">Save as PDF</a></td>
         </tr>
         @endforeach
     </table>
