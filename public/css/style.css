@@ -27,3 +27,9 @@ label {
     border-color: red;
     padding: .375rem .75rem;
 }
+.container-2 {
+    max-width: 800px;
+    margin: 50px auto;
+    text-align: left;
+    font-family: sans-serif;
+}

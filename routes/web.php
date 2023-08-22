@@ -19,6 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/', [RssFeedController::class, 'index']);
-Route::post('/', [RssFeedController::class, 'update'])->name('rss-feed.update');
+Route::get('/', [RssFeedController::class, 'new']);
+Route::post('/', [RssFeedController::class, 'add'])->name('rss-feed.update');
+Route::get('/feeds', [RssFeedController::class, 'feeds']);
 Route::get('/pdf', [PdfController::class, 'renderAsPdf']);

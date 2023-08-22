@@ -4,18 +4,31 @@ namespace App\Http\Controllers;
 
 use App\Models\RssFeed;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Vedmant\FeedReader\Facades\FeedReader;
 
 class RssFeedController extends Controller
 {
     /**
+     * Display all recorded feed urls.
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
+    public function feeds(Request $request) {
+        $feeds = DB::table('rss_feeds')->get();
+
+        return view('rss-feeds', ['feeds' => $feeds]);
+    }
+
+    /**
      * Display initial form with empty rss feed url text box.
      *
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
      */
-    public function index(Request $request)
+    public function new(Request $request)
     {
         $result = ['items' => []];
         return view('rss-feed', compact('result'));
@@ -28,7 +41,7 @@ class RssFeedController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
      * @throws ValidationException
      */
-    public function update(Request $request)
+    public function add(Request $request)
     {
         // Form validation
         $this->validate($request, [
