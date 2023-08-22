@@ -21,20 +21,28 @@
         @csrf
         <div class="form-group">
             <label>Rss Feed Url</label>
-            <input type="text" class="form-control" name="url" id="url">
+            <input type="text" class="form-control" name="url" id="url" value="{{ $url }}">
         </div>
         <input type="submit" name="send" value="Submit" class="btn btn-dark btn-block">
     </form>
 </div>
-<div class="container mt-5">
-    @foreach ($result['items'] as $item)
-        <h2>{{ $item['title'] }}</h2>
-        {!! $item['description'] !!}
-        @if (isset($item['thumbnail']))
-            <img src="{{ $item['thumbnail'] }}" alt="Thumbnail">
-        @endif
-        <a href="{{ $item['pdf_url'] }}">PDF</a>
-    @endforeach
+@if (count($result['items']) > 0)
+<div class="container-3">
+    <table>
+        <tr>
+            <th>Title</th><th>Description</th><th>Image</th><th>Save as PDF</th>
+        </tr>
+
+        @foreach ($result['items'] as $item)
+        <tr>
+            <td><a target="_blank" href="{{ $item['link'] }}">{{ $item['title'] }}</a></td>
+            <td>{!! $item['description'] !!}</td>
+            <td>@if (isset($item['thumbnail'])) <img src="{{ $item['thumbnail'] }}" alt="Thumbnail"> @endif</td>
+            <td class="pdf"><a href="{{ $item['pdf_url'] }}">Save as PDF</a></td>
+        </tr>
+        @endforeach
+    </table>
 </div>
+@endif
 </body>
 </html>

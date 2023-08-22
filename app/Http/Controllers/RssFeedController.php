@@ -31,7 +31,10 @@ class RssFeedController extends Controller
     public function new(Request $request)
     {
         $result = ['items' => []];
-        return view('rss-feed', compact('result'));
+
+        $url = urldecode($request->url);
+
+        return view('rss-feed', compact('result', 'url'));
     }
 
     /**
@@ -47,6 +50,8 @@ class RssFeedController extends Controller
         $this->validate($request, [
             'url' => 'required',
         ]);
+
+        $url = $request->url;
 
         //  Store data in database
         RssFeed::create($request->all());
@@ -93,6 +98,6 @@ class RssFeedController extends Controller
             $result['items'][] = $i;
         }
 
-        return view('rss-feed', compact('result'));
+        return view('rss-feed', compact('result', 'url'));
     }
 }

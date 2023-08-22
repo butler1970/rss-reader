@@ -10,9 +10,17 @@
 </head>
 <body>
 <div class="container-2">
-    @foreach ($feeds as $k => $feed)
-    <li>{{$k}} - <a href="{{ $feed->url }}">{{ $feed->url }}</a></li>
-    @endforeach
+    <table>
+        <tr>
+            <th>Rss Feed Url</th>
+        </tr>
+
+        @foreach ($feeds as $k => $feed)
+        <tr>
+            <td><a href="{{ "/?url=" . urlencode($feed->url) }}">{{ $feed->url }}</a></td>
+        </tr>
+        @endforeach
+    </table>
 </div>
 </body>
 </html>
